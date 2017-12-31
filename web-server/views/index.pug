@@ -1,0 +1,29 @@
+doctype html
+head
+  include head.pug
+  link(rel='stylesheet', href='/css/custom.css')
+body
+  main
+    .jumbotron.bg-dark.text-white
+      .container
+        h1.display-3.mb-3 shillz
+        .lead
+          | Courtesy of 
+          a(href="https://discord.gg/R8v48YA") NEO Discord 
+          | #market
+    .container
+      p.text-right
+        small Last updated: 
+      table.table.table-hover
+        thead
+          tr
+            th User
+            th Token
+            th Shill Date
+            th Shill Price
+            th Current Price
+            th % Return
+        tbody#shills
+  footer
+    include footer.pug
+    script(type='text/javascript', src='/js/index.js')

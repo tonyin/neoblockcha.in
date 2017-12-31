@@ -1,0 +1,23 @@
+{
+  "name": "shills",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "if [[ $NODE_ENV == 'prod' ]]; then node index.js; else nodemon index.js; fi"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-sanitizer": "^1.0.2",
+    "helmet": "^3.9.0",
+    "mongoose": "^5.0.0-rc0",
+    "mongoose-auto-increment": "^5.0.1",
+    "path": "^0.12.7",
+    "pug": "^2.0.0-rc.4",
+    "sitemap": "^1.13.0"
+  }
+}
