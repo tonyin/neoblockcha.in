@@ -8,7 +8,6 @@ const https = require('https')
 exports.getCoin = function(req, res) {
   Coin.findOne({symbol: req.params.coin.toUpperCase()},
     (err, doc) => {
-      console.log(doc)
       if (err) res.send(err)
       res.json(doc)
     }

@@ -58,4 +58,4 @@ typings/
 .env
 
 # custom
-package-lock.json
+web-server/package-lock.json

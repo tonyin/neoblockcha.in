@@ -10,7 +10,12 @@ exports.getShills = function(req, res) {
     Coin.findOne({symbol: coin.coin},
       (err, doc) => {
         if (err) callback(0)
-        callback(doc.price_usd)
+        if (doc) {
+          callback(doc.price_usd)
+        }
+        else {
+          callback(0)
+        }
       }
     )
   }
