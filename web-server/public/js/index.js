@@ -46,7 +46,7 @@ var mainLoader = (function() {
           <td>${shill.shill_date.substr(0,10)}</td>
           <td>$${shill.shill_price}</td>
           <td>$${shill.price_usd}</td>
-          <td>${shill.price_usd ? (shill.shill_price ? Math.round((shill.price_usd - shill.shill_price) / shill.shill_price * 100) : '') : ''}%</td>
+          <td>${(shill.price_usd ? (shill.shill_price ? (shill.price_usd - shill.shill_price) / shill.shill_price * 100 : 0) : 0).toFixed(2)}</td>
         </tr>`
       )
     }
