@@ -50,6 +50,7 @@ var mainLoader = (function() {
         </tr>`
       )
     }
+    $.bootstrapSortable({applyLast: true})
   }
 
   return {
