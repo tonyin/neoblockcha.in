@@ -1,7 +1,7 @@
 'use strict'
 
 var mainLoader = (function() {
-  const apiUrl = 'http://localhost:6002/api'
+  const apiUrl = 'https://neoblockcha.in/api'
   const $shills = $('#shills')
   const $lastUpdated = $('#last-updated')
 
@@ -31,7 +31,7 @@ var mainLoader = (function() {
     let url = apiUrl + '/shills'
     $.get(url, (shills) => {
       renderShills(shills, $shills)
-    }).fail((res) => console.log("Error: Could not get shillz"))
+    }).fail((res) => console.log("Error: Could not get shills"))
   }
 
   function renderShills(shills, element) {
@@ -39,6 +39,7 @@ var mainLoader = (function() {
     element.off()
     for (var i = 0, shill; i < shills.length; i++) {
       shill = shills[i]
+      const pct = (shill.price_usd ? (shill.shill_price ? (shill.price_usd - shill.shill_price) / shill.shill_price * 100 : 0) : 0).toFixed(2)
       element.append(
         `<tr>
           <td>${escapeHtml(shill.user)}</td>
@@ -46,7 +47,7 @@ var mainLoader = (function() {
           <td>${shill.shill_date.substr(0,10)}</td>
           <td>$${shill.shill_price}</td>
           <td>$${shill.price_usd}</td>
-          <td>${(shill.price_usd ? (shill.shill_price ? (shill.price_usd - shill.shill_price) / shill.shill_price * 100 : 0) : 0).toFixed(2)}</td>
+          <td ${pct > 0 ? `class="table-success"` : (pct < 0 ? `class="table-danger"` : '')}>${pct}</td>
         </tr>`
       )
     }

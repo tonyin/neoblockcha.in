@@ -5,10 +5,10 @@ const router = express.Router()
 const shill = require('./controllers/ShillController')
 const coin = require('./controllers/CoinController')
 
-router.get('/shillz', function(req, res) {
+router.get('/shillist', function(req, res) {
   let params = {}
-  params.title = "shillz - Courtesy of NEO Discord #market"
-  params.description = "shillz - Courtesy of NEO Discord #market"
+  params.title = "shillist - Courtesy of NEO Discord #market"
+  params.description = "shillist - Courtesy of NEO Discord #market"
   res.render('index', params)
 })
 

@@ -48,7 +48,7 @@ var sitemap = sm.createSitemap({
   hostname: 'https://neoblockcha.in',
   cacheTime: 600000,
   urls: [
-    {url: '/shillz', changefreq: 'daily', priority: 1}
+    {url: '/shillist', changefreq: 'daily', priority: 1}
   ]
 })
 app.get('/sitemap.xml', function(req, res) {
