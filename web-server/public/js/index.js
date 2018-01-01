@@ -1,7 +1,7 @@
 'use strict'
 
 var mainLoader = (function() {
-  const apiUrl = 'http://localhost:3002/api'
+  const apiUrl = 'http://localhost:6002/api'
   const $shills = $('#shills')
   const $lastUpdated = $('#last-updated')
 

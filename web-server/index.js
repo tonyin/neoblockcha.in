@@ -66,7 +66,7 @@ function loopUpdateCoins(interval) {
 }
 
 // Launch server
-const port = process.env.PORT || 3002
+const port = process.env.PORT || 6002
 server.listen(port, function() {
   loopUpdateCoins(60000)
 })
