@@ -3,6 +3,7 @@
 var mainLoader = (function() {
   const apiUrl = 'http://localhost:3002/api'
   const $shills = $('#shills')
+  const $lastUpdated = $('#last-updated')
 
   function escapeHtml(unsafe) {
     return unsafe
@@ -15,6 +16,15 @@ var mainLoader = (function() {
 
   function init() {
     getShills()
+    updateTime()
+  }
+
+  function updateTime() {
+    let url = apiUrl + '/coin/btc'
+    $.get(url, (coin) => {
+      let lastUpdated = document.createTextNode("Last updated: " + moment(coin.last_updated, moment.ISO_8601).fromNow())
+      $lastUpdated[0].appendChild(lastUpdated)
+    }).fail((res) => console.log("Error: Could not get last updated"))
   }
 
   function getShills() {
@@ -32,11 +42,11 @@ var mainLoader = (function() {
       element.append(
         `<tr>
           <td>${escapeHtml(shill.user)}</td>
-          <td>${escapeHtml(shill.token)}</td>
+          <td>${escapeHtml(shill.coin)}</td>
           <td>${shill.shill_date.substr(0,10)}</td>
           <td>$${shill.shill_price}</td>
-          <td></td>
-          <td>${shill.price ? (shill.shill_price ? (shill.price - shill.shill_price) / shill.shill_price * 100 : '') : ''}%</td>
+          <td>$${shill.price_usd}</td>
+          <td>${shill.price_usd ? (shill.shill_price ? Math.round((shill.price_usd - shill.shill_price) / shill.shill_price * 100) : '') : ''}%</td>
         </tr>`
       )
     }

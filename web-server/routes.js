@@ -3,6 +3,7 @@
 const express = require('express')
 const router = express.Router()
 const shill = require('./controllers/ShillController')
+const coin = require('./controllers/CoinController')
 
 router.get('/shillz', function(req, res) {
   let params = {}
@@ -16,6 +17,9 @@ router.get('/api/shills', function(req, res) {
 })
 router.post('/api/shill', function(req, res) {
   shill.createShill(req, res)
+})
+router.get('/api/coin/:coin', function(req, res) {
+  coin.getCoin(req, res)
 })
 
 module.exports = router

@@ -4,26 +4,27 @@ const mongoose = require('mongoose')
 const autoIncrement = require('mongoose-auto-increment')
 const Schema = mongoose.Schema
 
-var ShillSchema = new Schema({
-  user: {
+var CoinSchema = new Schema({
+  symbol: {
     type: String,
     required: true
   },
-  coin: {
-    type: String,
-    required: true
-  },
-  shill_date: {
-    type: Date,
-  },
-  shill_price: {
+  price_usd: {
     type: Number,
     required: true
   },
-  price: {
+  price_btc: {
+    type: Number,
+    required: true
+  },
+  market_cap_usd: {
     type: Number
+  },
+  last_updated: {
+    type: Date,
+    required: true
   }
 })
 
-ShillSchema.plugin(autoIncrement.plugin, 'Shill')
-module.exports = mongoose.model('Shill', ShillSchema)
+CoinSchema.plugin(autoIncrement.plugin, 'Coin')
+module.exports = mongoose.model('Coin', CoinSchema)

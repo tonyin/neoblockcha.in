@@ -1,6 +1,7 @@
 doctype html
 head
   include head.pug
+  link(rel='stylesheet', href='/css/bootstrap-sortable.css')
   link(rel='stylesheet', href='/css/custom.css')
 body
   main
@@ -12,13 +13,13 @@ body
           a(href="https://discord.gg/R8v48YA") NEO Discord 
           | #market
     .container
-      p.text-right
-        small Last updated: 
-      table.table.table-hover
+      p
+        small#last-updated
+      table.table.table-hover.sortable
         thead
           tr
             th User
-            th Token
+            th Coin
             th Shill Date
             th Shill Price
             th Current Price
@@ -26,4 +27,5 @@ body
         tbody#shills
   footer
     include footer.pug
+    script(type='text/javascript', src='/js/bootstrap-sortable.js')
     script(type='text/javascript', src='/js/index.js')

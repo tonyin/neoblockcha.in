@@ -23,7 +23,8 @@ mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/neoblockchain')
 
 // Models
-require("./models/Shill")
+require('./models/Shill')
+require('./models/Coin')
 
 // Network
 app.use(function(req, res, next) {
@@ -58,7 +59,16 @@ app.get('/sitemap.xml', function(req, res) {
   })
 })
 
+// Coin updates
+const coin = require('./controllers/CoinController')
+function loopUpdateCoins(interval) {
+  setInterval(coin.updateCoins, interval)
+}
+
+// Launch server
 const port = process.env.PORT || 3002
-server.listen(port)
+server.listen(port, function() {
+  loopUpdateCoins(60000)
+})
 
 module.exports = app
