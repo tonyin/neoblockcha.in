@@ -20,7 +20,7 @@ var ShillSchema = new Schema({
     type: Number,
     required: true
   },
-  price: {
+  neo_price: {
     type: Number
   }
 })

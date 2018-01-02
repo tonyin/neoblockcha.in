@@ -37,21 +37,33 @@ var mainLoader = (function() {
   function renderShills(shills, element) {
     element.empty()
     element.off()
-    for (var i = 0, shill; i < shills.length; i++) {
-      shill = shills[i]
-      const pct = (shill.price_usd ? (shill.shill_price ? (shill.price_usd - shill.shill_price) / shill.shill_price * 100 : 0) : 0).toFixed(2)
-      element.append(
-        `<tr>
-          <td>${escapeHtml(shill.user)}</td>
-          <td>${escapeHtml(shill.coin)}</td>
-          <td>${shill.shill_date.substr(0,10)}</td>
-          <td>$${shill.shill_price}</td>
-          <td>$${shill.price_usd}</td>
-          <td ${pct > 0 ? `class="table-success"` : (pct < 0 ? `class="table-danger"` : '')}>${pct}</td>
-        </tr>`
-      )
-    }
-    $.bootstrapSortable({applyLast: true})
+
+    // get Neo price
+    // @TODO: refactor to promise
+    let url = apiUrl + '/coin/neo'
+    $.get(url, (neo) => {
+      const neo_usd = neo.price_usd
+
+      for (var i = 0, shill; i < shills.length; i++) {
+        shill = shills[i]
+        const pct = (shill.price_usd ? (shill.shill_price ? (shill.price_usd - shill.shill_price) / shill.shill_price * 100 : 0) : 0).toFixed(2)
+        const neo_pct = (neo_usd ? (shill.neo_price ? (neo_usd - shill.neo_price) / shill.neo_price * 100 : 0) : 0).toFixed(2)
+        element.append(
+          `<tr>
+            <td>${escapeHtml(shill.user)}</td>
+            <td>${escapeHtml(shill.coin)}</td>
+            <td>${shill.shill_date.substr(0,10)}</td>
+            <td>$${shill.shill_price}</td>
+            <td>$${shill.price_usd}</td>
+            <td ${pct > 0 ? `class="table-success"` : (pct < 0 ? `class="table-danger"` : '')}>${pct}</td>
+            <td>${neo_pct}</td>
+            <td>${(pct - neo_pct).toFixed(2)}</td>
+          </tr>`
+        )
+      }
+      $.bootstrapSortable({applyLast: true})
+
+    })
   }
 
   return {
