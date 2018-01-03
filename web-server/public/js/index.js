@@ -52,7 +52,7 @@ var mainLoader = (function() {
           `<tr>
             <td>${escapeHtml(shill.user)}</td>
             <td>${escapeHtml(shill.coin)}</td>
-            <td>${shill.shill_date.substr(0,10)}</td>
+            <td>${moment(shill.shill_date, moment.ISO_8601).fromNow()}</td>
             <td>$${shill.shill_price}</td>
             <td>$${shill.price_usd}</td>
             <td ${pct > 0 ? `class="table-success"` : (pct < 0 ? `class="table-danger"` : '')}>${pct}</td>
