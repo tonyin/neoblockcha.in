@@ -8,7 +8,7 @@ const coin = require('./controllers/CoinController')
 router.get('/shillist', function(req, res) {
   let params = {}
   params.title = "shillist - Courtesy of NEO Discord #market"
-  params.description = "Track the best and worst shills from the best chat channel in crypto. In DHF We Trust."
+  params.description = "Track the best and worst shills from the best chat in crypto. In DHF We Trust."
   res.render('index', params)
 })
 
