@@ -1,8 +1,7 @@
 'use strict'
 
 var mainLoader = (function() {
-  // const apiUrl = 'https://neoblockcha.in/api'
-  const apiUrl = 'http://localhost:6002/api'
+  const apiUrl = 'https://neoblockcha.in/api'
   const $nep5s = $('#nep5')
   const $lastUpdated = $('#last-updated')
 
