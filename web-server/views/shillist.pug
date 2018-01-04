@@ -1,0 +1,36 @@
+doctype html
+head
+  include head.pug
+  link(rel='stylesheet', href='/css/bootstrap-sortable.css')
+  link(rel='stylesheet', href='/css/custom.css')
+body
+  main
+    .jumbotron.bg-dark.text-white
+      .container
+        h1.display-3.mb-3 shillist
+        .lead
+          | Courtesy of 
+          a(href="https://discord.gg/R8v48YA") NEO Discord 
+          | #market
+    .container
+      .row.align-items-center.mb-4
+        .col-12.col-md-6
+          small#last-updated
+        .col-12.col-md-6.mt-4.mt-md-0.text-center.text-md-right
+          a.btn.btn-primary.btn-success(href="https://docs.google.com/forms/d/e/1FAIpQLScPkfgvLA4EAouP9Ni0-0YDfo5G2wXjWGy6VeuzMmDTFgZ3MQ/viewform") Submit new shill
+      table.table.table-hover.sortable
+        thead
+          tr
+            th User
+            th Coin
+            th Shill Date
+            th Shill Price
+            th Current Price
+            th % Return
+            th % NEO Return
+            th(data-defaultsort="desc") % True Return
+        tbody#shills
+  footer
+    include footer.pug
+    script(type='text/javascript', src='/js/bootstrap-sortable.js')
+    script(type='text/javascript', src='/js/shillist.js')

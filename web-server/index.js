@@ -23,8 +23,9 @@ mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/neoblockchain')
 
 // Models
-require('./models/Shill')
 require('./models/Coin')
+require('./models/Shill')
+require('./models/Nep5')
 
 // Network
 app.use(function(req, res, next) {
@@ -48,7 +49,8 @@ var sitemap = sm.createSitemap({
   hostname: 'https://neoblockcha.in',
   cacheTime: 600000,
   urls: [
-    {url: '/shillist', changefreq: 'daily', priority: 1}
+    {url: '/shillist', changefreq: 'daily', priority: 1},
+    {url: '/nep5', changefreq: 'daily', priority: 0.9}
   ]
 })
 app.get('/sitemap.xml', function(req, res) {

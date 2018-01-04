@@ -7,30 +7,27 @@ body
   main
     .jumbotron.bg-dark.text-white
       .container
-        h1.display-3.mb-3 shillist
+        h1.display-3.mb-3 nep5
         .lead
-          | Courtesy of 
-          a(href="https://discord.gg/R8v48YA") NEO Discord 
-          | #market
+          | Performance of 
+          a(href="https://neo.org/dapps") NEO NEP5 coins 
+          | since ICOception 
     .container
       .row.align-items-center.mb-4
         .col-12.col-md-6
           small#last-updated
-        .col-12.col-md-6.mt-4.mt-md-0.text-center.text-md-right
-          a.btn.btn-primary.btn-success(href="https://docs.google.com/forms/d/e/1FAIpQLScPkfgvLA4EAouP9Ni0-0YDfo5G2wXjWGy6VeuzMmDTFgZ3MQ/viewform") Submit new shill
       table.table.table-hover.sortable
         thead
           tr
-            th User
             th Coin
-            th Shill Date
-            th Shill Price
+            th ICOception
+            th ICO Price
             th Current Price
             th % Return
             th % NEO Return
             th(data-defaultsort="desc") % True Return
-        tbody#shills
+        tbody#nep5
   footer
     include footer.pug
     script(type='text/javascript', src='/js/bootstrap-sortable.js')
-    script(type='text/javascript', src='/js/index.js')
+    script(type='text/javascript', src='/js/nep5.js')
