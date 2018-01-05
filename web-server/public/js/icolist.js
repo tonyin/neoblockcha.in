@@ -72,9 +72,8 @@ var mainLoader = (function() {
         $('#'+coin+'-downvote').on('click', null, {coin: coin, vote: false}, voteCoin)
         checkCoin(coin)
 
-      })
+      }).done((res) => {$.bootstrapSortable({applyLast: true})})
     }
-    $.bootstrapSortable({applyLast: true})
   }
 
   function voteCoin(e) {
