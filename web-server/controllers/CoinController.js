@@ -32,7 +32,7 @@ exports.updateCoins = function() {
   }
   const options = {
     hostname: 'api.coinmarketcap.com',
-    path: '/v1/ticker/?limit=500',
+    path: '/v1/ticker/?limit=1200',
     method: 'GET'
   }
   console.log("[" + new Date() + "] Calling api.coinmarketcap.com...")
