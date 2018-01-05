@@ -43,8 +43,8 @@ var mainLoader = (function() {
         `<tr>
           <td>${moment(ico.date, moment.ISO_8601).format('ll')}</td>
           <td>${moment(ico.date, moment.ISO_8601).fromNow()}</td>
-          <td>${ico.coin}</td>
-          <td>${ico.name}</td>
+          <td>${escapeHtml(ico.coin)}</td>
+          <td><a href=\"${escapeHtml(ico.url)}\" target=_blank>${escapeHtml(ico.name)}</a></td>
           <td>${`pending`}</td>
         </tr>`
       )
