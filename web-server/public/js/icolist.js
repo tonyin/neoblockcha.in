@@ -39,6 +39,9 @@ var mainLoader = (function() {
     element.off()
     for (var i = 0, ico; i < icos.length; i++) {
       ico = icos[i]
+      const date = ico.date
+      const name = escapeHtml(ico.name)
+      const url = escapeHtml(ico.url)
       const coin = escapeHtml(ico.coin)
 
       // @TODO: convert to promise
@@ -46,10 +49,10 @@ var mainLoader = (function() {
         
         element.append(
           `<tr>
-            <td>${moment(ico.date, moment.ISO_8601).format('ll')}</td>
-            <td>${moment(ico.date, moment.ISO_8601).fromNow()}</td>
+            <td>${moment(date, moment.ISO_8601).format('ll')}</td>
+            <td>${moment(date, moment.ISO_8601).fromNow()}</td>
             <td>${coin}</td>
-            <td><a href=\"${escapeHtml(ico.url)}\" target=_blank>${escapeHtml(ico.name)}</a></td>
+            <td><a href=\"${url}\" target=_blank>${name}</a></td>
             <td>
               <div class="progress">
               ${pct ? 
@@ -94,7 +97,8 @@ var mainLoader = (function() {
       } else {
         $('#'+coin+'-downvote').prop('disabled', true)
       }
-    })
+    }).done()
+      .fail((res) => {console.log("Error: Could note get vote for " + coin)})
   }
 
   return {

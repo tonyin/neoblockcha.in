@@ -10,7 +10,11 @@ exports.getVote = function(req, res) {
     coin: req.params.coin}]},
     function(err, doc) {
       if (err) res.send(err)
-      res.json(doc)
+      if (doc) {
+        res.json(doc)
+      } else {
+        res.sendStatus(404)
+      }
     }
   )
 }
@@ -33,7 +37,7 @@ exports.getVotes = function(req, res) {
 exports.createVote = function(req, res) {
   function upsertVote(vote) {
     Vote.findOneAndUpdate(
-      {cookie: vote.cookie},
+      {coin: vote.coin, cookie: vote.cookie},
       {
         date: new Date(),
         coin: vote.coin,
