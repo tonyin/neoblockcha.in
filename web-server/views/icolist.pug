@@ -1,0 +1,30 @@
+doctype html
+head
+  include head.pug
+  link(rel='stylesheet', href='/css/bootstrap-sortable.css')
+  link(rel='stylesheet', href='/css/custom.css')
+body
+  include header.pug
+  main
+    .jumbotron.bg-dark.text-white
+      .container
+        h1.display-3.mb-3 icolist
+        .lead
+          | Crowdsourced ICOs from the NEO mastermind chat
+    .container
+      .row.align-items-center.mb-4
+        .col-12.col-md-6
+          small#last-updated
+      table.table.table-hover.sortable
+        thead
+          tr
+            th(data-defaultsort="asc") Date
+            th From Now
+            th Coin
+            th Name
+            th Sentiment
+        tbody#icos
+  footer
+    include footer.pug
+    script(type='text/javascript', src='/js/bootstrap-sortable.js')
+    script(type='text/javascript', src='/js/icolist.js')
