@@ -85,7 +85,7 @@ var mainLoader = (function() {
       type: 'post',
       url: url,
       data: {vote: vote}
-    }).done((res) => getIcos())
+    }).done((res) => checkCoin(coin))
       .fail((res) => console.log("Error: Could not vote"))
   }
 
@@ -94,7 +94,9 @@ var mainLoader = (function() {
     $.get(url, (vote) => {
       if (vote.upvote) {
         $('#'+coin+'-upvote').prop('disabled', true)
+        $('#'+coin+'-downvote').prop('disabled', false)
       } else {
+        $('#'+coin+'-upvote').prop('disabled', false)
         $('#'+coin+'-downvote').prop('disabled', true)
       }
     }).done()
