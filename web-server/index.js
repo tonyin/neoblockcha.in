@@ -27,6 +27,7 @@ require('./models/Coin')
 require('./models/Shill')
 require('./models/Nep5')
 require('./models/Ico')
+require('./models/Vote')
 
 // Network
 app.use(function(req, res, next) {

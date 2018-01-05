@@ -6,6 +6,7 @@ const coin = require('./controllers/CoinController')
 const shill = require('./controllers/ShillController')
 const nep5 = require('./controllers/Nep5Controller')
 const ico = require('./controllers/IcoController')
+const vote = require('./controllers/VoteController')
 
 router.get('/shillist', function(req, res) {
   let params = {}
@@ -47,6 +48,15 @@ router.get('/api/icos', function(req, res) {
 })
 router.post('/api/ico', function(req, res) {
   ico.createIco(req, res)
+})
+router.get('/api/:coin/vote', function(req, res) {
+  vote.getVote(req, res)
+})
+router.get('/api/:coin/votes', function(req, res) {
+  vote.getVotes(req, res)
+})
+router.post('/api/:coin/vote', function(req, res) {
+  vote.createVote(req, res)
 })
 
 module.exports = router

@@ -39,21 +39,62 @@ var mainLoader = (function() {
     element.off()
     for (var i = 0, ico; i < icos.length; i++) {
       ico = icos[i]
-      element.append(
-        `<tr>
-          <td>${moment(ico.date, moment.ISO_8601).format('ll')}</td>
-          <td>${moment(ico.date, moment.ISO_8601).fromNow()}</td>
-          <td>${escapeHtml(ico.coin)}</td>
-          <td><a href=\"${escapeHtml(ico.url)}\" target=_blank>${escapeHtml(ico.name)}</a></td>
-          <td>${`0`}</td>
-          <td>
-            <button id="upvote" class="btn btn-primary" type="button"><i class="fa fa-thumbs-up"></i></button>
-            <button id="downvote" class="btn btn-danger" type="button"><i class="fa fa-thumbs-down"></i></button>
-          </td>
-        </tr>`
-      )
+      const coin = escapeHtml(ico.coin)
+
+      // @TODO: convert to promise
+      $.get(apiUrl + '/' + coin + '/votes', (pct) => {
+        
+        element.append(
+          `<tr>
+            <td>${moment(ico.date, moment.ISO_8601).format('ll')}</td>
+            <td>${moment(ico.date, moment.ISO_8601).fromNow()}</td>
+            <td>${coin}</td>
+            <td><a href=\"${escapeHtml(ico.url)}\" target=_blank>${escapeHtml(ico.name)}</a></td>
+            <td>
+              <div class="progress">
+              ${pct ? 
+                `<div class="progress-bar bg-success" role="progressbar" style="width: ${pct*100}%" aria-valuenow="${pct*100}" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-danger" role="progressbar" style="width: ${(1-pct)*100}%" aria-valuenow="${(1-pct)*100}" aria-valuemin="0" aria-valuemax="100"></div>` :
+                `<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>`
+              }
+              </div> ${pct*100}%
+            </td>
+            <td>
+              <button id="${coin}-upvote" class="btn btn-success" type="button"><i class="fa fa-thumbs-up"></i></button>
+              <button id="${coin}-downvote" class="btn btn-danger" type="button"><i class="fa fa-thumbs-down"></i></button>
+            </td>
+          </tr>`
+        )
+        $('#'+coin+'-upvote').on('click', null, {coin: coin, vote: true}, voteCoin)
+        $('#'+coin+'-downvote').on('click', null, {coin: coin, vote: false}, voteCoin)
+        checkCoin(coin)
+
+      })
     }
     $.bootstrapSortable({applyLast: true})
+  }
+
+  function voteCoin(e) {
+    const coin = e.data.coin
+    const vote = e.data.vote
+    let url = apiUrl + '/' + coin + '/vote'
+    $.ajax({
+      type: 'post',
+      url: url,
+      data: {vote: vote}
+    }).done((res) => getIcos())
+      .fail((res) => console.log("Error: Could not vote"))
+  }
+
+  function checkCoin(coin) {
+    let url = apiUrl + '/' + coin + '/vote'
+    $.get(url, (vote) => {
+      if (vote.upvote) {
+        $('#'+coin+'-upvote').prop('disabled', true)
+      } else {
+        $('#'+coin+'-downvote').prop('disabled', true)
+      }
+    })
   }
 
   return {
