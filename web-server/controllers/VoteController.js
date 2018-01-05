@@ -27,7 +27,7 @@ exports.getVotes = function(req, res) {
       if (docs.length) {
         const total = docs.length
         const upvotes = docs.filter(doc => doc.upvote).length
-        res.json(upvotes/total)
+        res.json((upvotes/total).toFixed(2))
       } else {
         res.json(0)
       }
