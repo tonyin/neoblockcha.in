@@ -25,6 +25,7 @@ mongoose.connect('mongodb://localhost/neoblockchain')
 // Models
 require('./models/Coin')
 require('./models/Shill')
+require('./models/Shit')
 require('./models/Nep5')
 require('./models/Ico')
 require('./models/Vote')
@@ -52,7 +53,8 @@ var sitemap = sm.createSitemap({
   cacheTime: 600000,
   urls: [
     {url: '/shillist', changefreq: 'daily', priority: 1},
-    {url: '/nep5', changefreq: 'daily', priority: 0.8},
+    {url: '/shitlist', changefreq: 'daily', priority: 0.8},
+    {url: '/nep5', changefreq: 'daily', priority: 0.7},
     {url: '/icolist', changefreq: 'daily', priority: 0.9}
   ]
 })

@@ -4,6 +4,7 @@ const express = require('express')
 const router = express.Router()
 const coin = require('./controllers/CoinController')
 const shill = require('./controllers/ShillController')
+const shit = require('./controllers/ShitController')
 const nep5 = require('./controllers/Nep5Controller')
 const ico = require('./controllers/IcoController')
 const vote = require('./controllers/VoteController')
@@ -13,6 +14,12 @@ router.get('/shillist', function(req, res) {
   params.title = "shillist - Courtesy of NEO Discord #market"
   params.description = "Track the best and worst shills from the best chat in crypto. In DHF We Trust."
   res.render('shillist', params)
+})
+router.get('/shitlist', function(req, res) {
+  let params = {}
+  params.title = "shitlist - Courtesy of NEO Discord #market"
+  params.description = "Track the best shit from the best chat in crypto. In DHF We Trust."
+  res.render('shitlist', params)
 })
 router.get('/nep5', function(req, res) {
   let params = {}
@@ -36,6 +43,12 @@ router.get('/api/shills', function(req, res) {
 })
 router.post('/api/shill', function(req, res) {
   shill.createShill(req, res)
+})
+router.get('/api/shits', function(req, res) {
+  shit.getShits(req, res)
+})
+router.post('/api/shit', function(req, res) {
+  shit.createShit(req, res)
 })
 router.get('/api/nep5s', function(req, res) {
   nep5.getNep5s(req, res)
