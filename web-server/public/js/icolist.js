@@ -47,12 +47,13 @@ var mainLoader = (function() {
       // @TODO: convert to promise
       $.get(apiUrl + '/' + coin + '/votes', (votes) => {
 
-        let upvotes, pct
-        const total = votes.length
-        if (total > 0) {
+        let total, upvotes, pct
+        if (total.length > 0) {
+          total = votes.length
           upvotes = votes.filter(vote => vote.upvote).length
           pct = (upvotes/total).toFixed(2)
         } else {
+          total = 0
           upvotes = 0
           pct = 0
         }
@@ -70,7 +71,7 @@ var mainLoader = (function() {
                 <div class="progress-bar bg-danger" role="progressbar" style="width: ${(1-pct)*100}%" aria-valuenow="${(1-pct)*100}" aria-valuemin="0" aria-valuemax="100"></div>` :
                 `<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>`
               }
-              </div> ${pct*100}% (${total} ${total > 1 ? `votes` : `vote`})
+              </div> ${pct*100}% (${total} ${total == 1 ? `vote` : `votes`})
             </td>
             <td>
               <button id="${coin}-upvote" class="btn btn-success" type="button"><i class="fa fa-thumbs-up"></i></button>
