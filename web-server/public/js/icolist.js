@@ -47,10 +47,15 @@ var mainLoader = (function() {
       // @TODO: convert to promise
       $.get(apiUrl + '/' + coin + '/votes', (votes) => {
 
-        console.log(votes)
+        let upvotes, pct
         const total = votes.length
-        const upvotes = votes.filter(vote => vote.upvote).length
-        const pct = (upvotes/total).toFixed(2)
+        if (total > 0) {
+          upvotes = votes.filter(vote => vote.upvote).length
+          pct = (upvotes/total).toFixed(2)
+        } else {
+          upvotes = 0
+          pct = 0
+        }
         
         element.append(
           `<tr>
