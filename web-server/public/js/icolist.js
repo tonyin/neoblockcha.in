@@ -48,7 +48,7 @@ var mainLoader = (function() {
       $.get(apiUrl + '/' + coin + '/votes', (votes) => {
 
         let total, upvotes, pct
-        if (total.length > 0) {
+        if (votes.length > 0) {
           total = votes.length
           upvotes = votes.filter(vote => vote.upvote).length
           pct = (upvotes/total).toFixed(2)
