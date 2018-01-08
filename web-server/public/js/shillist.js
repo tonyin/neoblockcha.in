@@ -52,6 +52,7 @@ var mainLoader = (function() {
           `<tr>
             <td>${escapeHtml(shill.user)}</td>
             <td>${escapeHtml(shill.coin)}</td>
+            <td>${moment(shill.shill_date, moment.ISO_8601).format('ll')}</td>
             <td>${moment(shill.shill_date, moment.ISO_8601).fromNow()}</td>
             <td>$${shill.shill_price}</td>
             <td>$${shill.price_usd}</td>
