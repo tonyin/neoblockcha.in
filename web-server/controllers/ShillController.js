@@ -20,7 +20,7 @@ exports.getShills = function(req, res) {
     )
   }
   Shill.find({$and:[
-      {shill_date: {$gte: new Date(new Date().valueOf() - 7*24*60*60*1000)}}
+      {shill_date: {$gte: new Date(new Date().valueOf() - 30*24*60*60*1000)}}
     ]},
     'user coin shill_date shill_price neo_price',
     {sort: {shill_date: -1}},
