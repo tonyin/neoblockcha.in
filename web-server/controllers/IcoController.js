@@ -6,7 +6,7 @@ const Coin = mongoose.model('Coin')
 const Ico = mongoose.model('Ico')
 
 exports.getIcos = function(req, res) {
-  Ico.find({_id: {$gte: 0}},
+  Ico.find({date: {$gte: new Date(new Date().valueOf() - 1*24*60*60*1000)}},
     'date coin name url',
     function(err, docs) {
       if (err) res.send(err)
