@@ -43,6 +43,7 @@ var mainLoader = (function() {
       const name = escapeHtml(ico.name)
       const url = escapeHtml(ico.url)
       const coin = escapeHtml(ico.coin)
+      const protocol = escapeHtml((ico.protocol ? ico.protocol : ''))
 
       // @TODO: convert to promise
       $.get(apiUrl + '/' + coin + '/votes', (votes) => {
@@ -62,6 +63,7 @@ var mainLoader = (function() {
           `<tr>
             <td>${moment(date, moment.ISO_8601).format('ll')}</td>
             <td>${moment(date, moment.ISO_8601).fromNow()}</td>
+            <td>${protocol}</td>
             <td>${coin}</td>
             <td><a href=\"${url}\" target=_blank>${name}</a></td>
             <td>
