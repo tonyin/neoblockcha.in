@@ -6,7 +6,7 @@ const Coin = mongoose.model('Coin')
 const Ico = mongoose.model('Ico')
 
 exports.getIcos = function(req, res) {
-  Ico.find({date: {$gte: new Date(new Date().valueOf() - 1*24*60*60*1000)}},
+  Ico.find({date: {$gte: new Date(new Date().valueOf() - 0*24*60*60*1000)}},
     'date coin name url protocol event',
     function(err, docs) {
       if (err) res.send(err)
