@@ -18,6 +18,12 @@ var IcoSchema = new Schema({
   },
   url: {
     type: String
+  },
+  protocol: {
+    type: String
+  },
+  event: {
+    type: String
   }
 })
 
