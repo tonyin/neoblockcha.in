@@ -9,7 +9,7 @@ const nep5 = require('./controllers/Nep5Controller')
 const ico = require('./controllers/IcoController')
 const vote = require('./controllers/VoteController')
 
-router.get('/shillist', function(req, res) {
+router.get(['/', '/shillist'], function(req, res) {
   let params = {}
   params.title = "shillist - Courtesy of NEO Discord #market"
   params.description = "Track the best and worst shills from the best chat in crypto. In DHF We Trust."
