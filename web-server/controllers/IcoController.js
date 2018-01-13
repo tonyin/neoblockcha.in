@@ -19,7 +19,9 @@ exports.createIco = function(req, res) {
     date: new Date(req.sanitize(req.body.date)),
     coin: req.sanitize(req.body.coin),
     name: req.sanitize(req.body.name),
-    url: req.sanitize(req.body.url)
+    url: req.sanitize(req.body.url),
+    protocol: req.sanitize(req.body.protocol),
+    event: req.sanitize(req.body.event)
   })
   ico.save(function(err, doc) {
     if (err) res.send(err)

@@ -40,6 +40,7 @@ var mainLoader = (function() {
     for (var i = 0, ico; i < icos.length; i++) {
       ico = icos[i]
       const date = ico.date
+      const event = escapeHtml((ico.event ? ico.event : ''))
       const name = escapeHtml(ico.name)
       const url = escapeHtml(ico.url)
       const coin = escapeHtml(ico.coin)
@@ -63,6 +64,7 @@ var mainLoader = (function() {
           `<tr>
             <td>${moment(date, moment.ISO_8601).format('ll')}</td>
             <td>${moment(date, moment.ISO_8601).fromNow()}</td>
+            <td>${event}</td>
             <td>${protocol}</td>
             <td>${coin}</td>
             <td><a href=\"${url}\" target=_blank>${name}</a></td>
