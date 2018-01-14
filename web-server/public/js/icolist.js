@@ -20,11 +20,8 @@ var mainLoader = (function() {
   }
 
   function updateTime() {
-    let url = apiUrl + '/coin/neo'
-    $.get(url, (coin) => {
-      let lastUpdated = document.createTextNode("Last updated: " + moment(coin.last_updated, moment.ISO_8601).fromNow())
-      $lastUpdated[0].appendChild(lastUpdated)
-    }).fail((res) => console.log("Error: Could not get last updated"))
+    let lastUpdated = document.createTextNode("Current time: " + moment().format())
+    $lastUpdated[0].appendChild(lastUpdated)
   }
 
   function getIcos() {
