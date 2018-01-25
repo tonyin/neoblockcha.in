@@ -29,6 +29,7 @@ require('./models/Shit')
 require('./models/Nep5')
 require('./models/Ico')
 require('./models/Vote')
+require('./models/Eat')
 
 // Network
 app.use(function(req, res, next) {
@@ -55,7 +56,8 @@ var sitemap = sm.createSitemap({
     {url: '/shillist', changefreq: 'daily', priority: 1},
     {url: '/shitlist', changefreq: 'daily', priority: 0.8},
     {url: '/nep5', changefreq: 'daily', priority: 0.7},
-    {url: '/icolist', changefreq: 'daily', priority: 0.9}
+    {url: '/icolist', changefreq: 'daily', priority: 0.9},
+    {url: '/eatlist', changefreq: 'daily', priority: 0.6}
   ]
 })
 app.get('/sitemap.xml', function(req, res) {

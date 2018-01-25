@@ -8,6 +8,7 @@ const shit = require('./controllers/ShitController')
 const nep5 = require('./controllers/Nep5Controller')
 const ico = require('./controllers/IcoController')
 const vote = require('./controllers/VoteController')
+const eat = require('./controllers/EatController')
 
 router.get(['/', '/shillist'], function(req, res) {
   let params = {}
@@ -32,6 +33,12 @@ router.get('/icolist', function(req, res) {
   params.title = "icolist - Crowdsourced ICOs from the NEO mastermind chat"
   params.description = "Track who's doing which ICOs. In DHF We Trust."
   res.render('icolist', params)
+})
+router.get('/eatlist', function(req, res) {
+  let params = {}
+  params.title = "eatlist - Who's eating NEO eggplants"
+  params.description = "Track who's eating what if NEO doesn't perform. In DHF We Trust."
+  res.render('eatlist', params)
 })
 
 
@@ -70,6 +77,12 @@ router.get('/api/:coin/votes', function(req, res) {
 })
 router.post('/api/:coin/vote', function(req, res) {
   vote.createVote(req, res)
+})
+router.get('/api/eats', function(req, res) {
+  eat.getEats(req, res)
+})
+router.post('/api/eat', function(req, res) {
+  eat.createEat(req, res)
 })
 
 module.exports = router

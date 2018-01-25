@@ -1,0 +1,33 @@
+doctype html
+head
+  include head.pug
+  link(rel='stylesheet', href='/css/bootstrap-sortable.css')
+  link(rel='stylesheet', href='/css/custom.css')
+body
+  include header.pug
+  main
+    .jumbotron.bg-dark.text-white
+      .container
+        h1.display-3.mb-3 eatlist
+        .lead Famous last words...
+    .container
+      .row.align-items-center.mb-4
+        .col-12.col-md-6
+          small.mr-5#last-updated
+          a.btn.btn-primary.btn-success(href="") Submit new eat
+      table.table.table-hover.sortable
+        thead
+          tr
+            th User
+            th(data-dateformat="MMM-DD-YYYY") By This Date
+            th Predicted Price
+            th Current Price
+            th(data-defaultsort="desc") $$$ To Go
+            th Eat
+            th Claim
+            th Proof
+        tbody#eats
+  footer
+    include footer.pug
+    script(type='text/javascript', src='/js/bootstrap-sortable.js')
+    script(type='text/javascript', src='/js/eatlist.js')
